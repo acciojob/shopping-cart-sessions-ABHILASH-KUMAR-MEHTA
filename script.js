@@ -23,7 +23,8 @@ function renderProducts() {
 // Render shopping cart from sessionStorage
 function renderCart() {
   cartList.innerHTML = "";
-  const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+  const cartData = sessionStorage.getItem("cart");
+  const cart = cartData ? JSON.parse(cartData) : [];
 
   cart.forEach((item) => {
     const li = document.createElement("li");
@@ -34,7 +35,7 @@ function renderCart() {
 
 // Add product to cart
 function addToCart(productId) {
-  const product = products.find(p => p.id === productId);
+  const product = products.find((p) => p.id === productId);
   const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
   cart.push(product);
   sessionStorage.setItem("cart", JSON.stringify(cart));
@@ -57,6 +58,11 @@ document.addEventListener("click", (e) => {
 
 clearCartBtn.addEventListener("click", clearCart);
 
-// Initial rendering
+// Don't reset cart if Cypress preloaded it
+if (!sessionStorage.getItem("cart")) {
+  sessionStorage.setItem("cart", JSON.stringify([]));
+}
+
+// Initial render
 renderProducts();
 renderCart();
