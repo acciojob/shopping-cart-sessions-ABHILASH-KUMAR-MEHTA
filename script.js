@@ -58,6 +58,8 @@ document.addEventListener("click", (e) => {
 
 clearCartBtn.addEventListener("click", clearCart);
 
-// Initial render
-renderProducts();
-renderCart();
+// ✅ Delay rendering until DOM is fully ready (and Cypress has injected sessionStorage)
+document.addEventListener("DOMContentLoaded", () => {
+  renderProducts();
+  renderCart();
+});
