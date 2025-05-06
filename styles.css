@@ -1,1 +1,60 @@
 /*  your css code here. If applicable */
+body {
+  font-family: Arial, sans-serif;
+  margin: 40px;
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+h1, h2 {
+  text-align: center;
+  color: #2c3e50;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#product-list li,
+#cart-list li {
+  background-color: #fff;
+  margin: 10px auto;
+  padding: 15px 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+#clear-cart-btn {
+  display: block;
+  margin: 30px auto;
+  background-color: #e74c3c;
+}
+
+#clear-cart-btn:hover {
+  background-color: #c0392b;
+}
+
+hr {
+  margin: 40px 0;
+  border: none;
+  border-top: 2px solid #ccc;
+}
