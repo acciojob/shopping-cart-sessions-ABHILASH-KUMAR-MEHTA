@@ -6,12 +6,10 @@ const products = [
   { id: 5, name: "Product 5", price: 50 },
 ];
 
-// DOM elements
 const productList = document.getElementById("product-list");
 const cartList = document.getElementById("cart-list");
 const clearCartBtn = document.getElementById("clear-cart-btn");
 
-// Render product list
 function renderProducts() {
   products.forEach((product) => {
     const li = document.createElement("li");
@@ -20,7 +18,6 @@ function renderProducts() {
   });
 }
 
-// Render shopping cart from sessionStorage
 function renderCart() {
   cartList.innerHTML = "";
   const cartData = sessionStorage.getItem("cart");
@@ -33,7 +30,6 @@ function renderCart() {
   });
 }
 
-// Add product to cart
 function addToCart(productId) {
   const product = products.find((p) => p.id === productId);
   const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
@@ -42,13 +38,11 @@ function addToCart(productId) {
   renderCart();
 }
 
-// Clear the cart
 function clearCart() {
   sessionStorage.removeItem("cart");
   renderCart();
 }
 
-// Event listeners
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("add-to-cart-btn")) {
     const id = parseInt(e.target.getAttribute("data-id"));
@@ -58,11 +52,5 @@ document.addEventListener("click", (e) => {
 
 clearCartBtn.addEventListener("click", clearCart);
 
-// Don't reset cart if Cypress preloaded it
-if (!sessionStorage.getItem("cart")) {
-  sessionStorage.setItem("cart", JSON.stringify([]));
-}
-
-// Initial render
 renderProducts();
 renderCart();
